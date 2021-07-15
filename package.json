@@ -2,9 +2,9 @@
   "name": "file-custodian",
   "version": "1.0.0",
   "description": "A javaScript library to manage files",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon --exec babel-node index.js",
+    "start": "nodemon --exec babel-node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Amir A. Parvez aka Mohd Amir",
@@ -16,6 +16,7 @@
     "nodemon": "^2.0.12"
   },
   "dependencies": {
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "joi": "^17.4.1"
   }
 }

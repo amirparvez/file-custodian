@@ -1,11 +1,21 @@
 {
   "name": "file-custodian",
   "version": "1.0.0",
-  "description": "A JavaScript library to handle files",
+  "description": "A javaScript library to manage files",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon --exec babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Amir A. Parvez aka Mohd Amir",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/node": "^7.14.7",
+    "@babel/preset-env": "^7.14.7",
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
 }

@@ -1,7 +1,7 @@
 {
   "name": "file-custodian",
   "version": "1.0.0",
-  "description": "A javaScript library to manage files",
+  "description": "A javaScript library to manage files at different depositories simultaneously.",
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec babel-node app.js",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "dotenv": "^10.0.0",
-    "joi": "^17.4.1"
+    "joi": "^17.4.1",
+    "multiparty": "^4.2.2"
   }
 }

@@ -1,9 +1,10 @@
-require("dotenv").config();
 const FileCustodian = require("./lib/index.js");
+const { Sequelize, DataTypes, Model, Op } = require('sequelize');
 const express = require("express");
 
+import User from './lib/assets/models/User';
+
 const custodian = new FileCustodian({ name: "Jack", });
-const crypto = require('crypto');
 
 const app = express();
 app.use(express.static(__dirname + '/client'));
@@ -49,6 +50,23 @@ async function start(){
         isDefault: true,
     });
 
+    await custodian.dep("ls-1").setUser(1);
+
+    var sequelize = new Sequelize("nodejs2", "mainuser", "1234567890", {
+        host: "localhost",
+        port: "3306",
+        dialect: "mariadb",
+        timezone: "+00:00",
+        dialectOptions: {
+          connectTimeout: 90000,
+          useUTC: true,
+          timezone: "+00:00",
+        },
+    });
+
+    var UserModel = User({s: sequelize});
+    await UserModel.sync({ alter: true, });
+
     await custodian.dep("ls-1").newDatabase({
         host: "localhost",
         port: "3306"/*"5432"*/,
@@ -58,25 +76,35 @@ async function start(){
         password: "1234567890",
         table_name: "fcfiles",
         proper_delete: false,
+        //sequelize_instance: sequelize,
+        //user_model: UserModel,
     });
-
-    //const iv = crypto.randomBytes(16).toString('hex');
-    //const key = crypto.randomBytes(32).toString('hex');
 
     await custodian.dep("ls-1").newProtector({
       algorithm: "aes-256-ctr",
-      key: "ac9f2fed5461ae2d6d0c9bdf95c1d79c0e90e2bdeeae9fd1b48eac0892fce299",
-      initialization_vector: "386d7bf8cfd7b744f0eb9aa455ee5c11",
     });
 
     console.log(await custodian.dep("ls-1"));
 
     await custodian.dep("ls-1").db().init();
+
     //await custodian.dep("ls-1").db().createTable();
     //var newFile = await custodian.dep("ls-1").newFile({ name: "testing", ext: "txt", folder: "/encrypted", data: "test", });
     //console.log(newFile);
+
+    setTimeout(async function () {
+        var userOne = await UserModel.findOne({
+            where: {
+                id: 1
+            },
+            include: { all: true },
+        });
+
+        console.log(await userOne.FCFiles);
+    }, 1000);
+
     //var files = await custodian.dep("ls-1").syncDB();
-    //var files = await custodian.dep("ls-1").searchFiles({ folder: "/encrypted", /*query: "NAME_CONTAINS:infi",*/ });
+    //var files = await custodian.dep("ls-1").searchFiles({ folder: "/jpeg", /*query: "NAME_CONTAINS:infi",*/ });
     //console.log(files);
 
     //var response = await files[0].rename("testing3");

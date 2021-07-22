@@ -24,9 +24,9 @@ app.post("/upload/", async function(request, response){
 });
 
 app.get("/view/:folder/:name", async function(request, response){
-    var file = await custodian.dep("ls-1").getFile({ name: `${request.params.name.split(".")[0]}`, ext: `${request.params.name.split(".")[1]}`, folder: `/${request.params.folder}`, });
+    const file = await custodian.dep("ls-1").getFile({ name: `${request.params.name.split(".")[0]}`, ext: `${request.params.name.split(".")[1]}`, folder: `/${request.params.folder}`, });
     if(file !== null){
-        var image = Buffer.from(file.config.data, 'base64');
+        const image = Buffer.from(file.config.data, 'base64');
         response.writeHead(200, {
             'Content-Type': 'image/png',
             'Content-Length': image.length,
@@ -52,7 +52,7 @@ async function start(){
 
     await custodian.dep("ls-1").setUser(1);
 
-    var sequelize = new Sequelize("nodejs2", "mainuser", "1234567890", {
+    const sequelize = new Sequelize("nodejs2", "mainuser", "1234567890", {
         host: "localhost",
         port: "3306",
         dialect: "mariadb",
@@ -64,7 +64,7 @@ async function start(){
         },
     });
 
-    var UserModel = User({s: sequelize});
+    const UserModel = User({s: sequelize});
     await UserModel.sync({ alter: true, });
 
     await custodian.dep("ls-1").newDatabase({
@@ -89,11 +89,11 @@ async function start(){
     await custodian.dep("ls-1").db().init();
 
     //await custodian.dep("ls-1").db().createTable();
-    //var newFile = await custodian.dep("ls-1").newFile({ name: "testing", ext: "txt", folder: "/encrypted", data: "test", });
+    //const newFile = await custodian.dep("ls-1").newFile({ name: "testing", ext: "txt", folder: "/encrypted", data: "test", });
     //console.log(newFile);
 
     setTimeout(async function () {
-        var userOne = await UserModel.findOne({
+        const userOne = await UserModel.findOne({
             where: {
                 id: 1
             },
@@ -103,15 +103,15 @@ async function start(){
         console.log(await userOne.FCFiles);
     }, 1000);
 
-    //var files = await custodian.dep("ls-1").syncDB();
-    //var files = await custodian.dep("ls-1").searchFiles({ folder: "/jpeg", /*query: "NAME_CONTAINS:infi",*/ });
+    //const files = await custodian.dep("ls-1").syncDB();
+    //const files = await custodian.dep("ls-1").searchFiles({ folder: "/jpeg", /*query: "NAME_CONTAINS:infi",*/ });
     //console.log(files);
 
-    //var response = await files[0].rename("testing3");
-    //var response = await files[0].delete();
+    //const response = await files[0].rename("testing3");
+    //const response = await files[0].delete();
     //console.log(response);
 
-    //for(var file of files){
-        //var model = await file.createModel();
+    //for(let file of files){
+        //const model = await file.createModel();
     //}
 }

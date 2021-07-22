@@ -1,0 +1,19 @@
+-   FCFile: is a wrapper class for files.
+#   Config: { id, name, ext, size, data, folder, path, isEncrypted, isDeleted, created_at, updated_at, deleted_at, user_id, handler }
+
+#   beautifyPath (private) : Checks folder path for errors and fixes them.
+    input: path
+    returns final-path
+
+#   delete : Deletes file and updates database if any connected.
+    returns true or false
+
+#   rename : Renames file and updates database if any connected.
+    input: new_name
+    returns true or false
+
+#   protect : Protects/Encrypts file data, replaces file/file-data with new-file/encrypted-file-data and updates database if any connected.
+    returns true or false
+
+#   createModel: Creates model entry in database if it does not exists.
+    returns FCFile or null

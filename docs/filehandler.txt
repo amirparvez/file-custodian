@@ -46,11 +46,11 @@
 
 #   getLocalFile (private) : Returns values of a local file.
     input : path
-    returns { data, name, ext, folder, } or null
+    returns { name, ext, folder, } or null
 
-#   getLocalFileData (private) : Gets data of a local file.
+#   getLocalFileContents (private) : Gets contents of a local file.
     input : path
-    returns data or null
+    returns { isStream: true/false, contents: contents/null }
 
 #   deleteLocalFile (private) : Deletes a local file.
     input : path
@@ -77,7 +77,7 @@
     returns true or false
 
 #   newFile : Creates new file/s in depository.
-    input : { (name, ext, data)/request, folder, isEncrypted }
+    input : { (name, ext, data, isStream)/request, folder, isEncrypted, }
     returns file/s or null
 
 #   deleteFile : Deletes a file from depository.

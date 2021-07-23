@@ -17,3 +17,6 @@
 
 #   createModel: Creates model entry in database if it does not exists.
     returns FCFile or null
+
+#   getContents: Calls getFileContents function of it's handler which returns decrypted file contents
+    returns { isStream: true/false, contents: contents/null }

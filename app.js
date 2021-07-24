@@ -26,19 +26,12 @@ app.post("/upload/", async function(request, response){
 app.get("/view/:folder/:name", async function(request, response){
     const file = await custodian.dep("ls-1").getFile({ name: `${request.params.name.split(".")[0]}`, ext: `${request.params.name.split(".")[1]}`, folder: `/${request.params.folder}`, });
     if(file !== null){
-        const { isStream, contents, readStream, contentType } = await file.getContents();
+        const { contents, contentType, readStream } = await file.getContents();
         if(contents !== null){
-            if(isStream === false){
-                response.writeHead(200, { 'Content-Type': contentType, 'Content-Length': contents.length, });
-                response.end(contents);
-            }else{
-                if(isStream === true){
-                    response.writeHead(200, { 'Content-Type': contentType, });
-                    readStream.resume();
-                    contents.on('data', (data) => { console.log("DATA: ", data.length); response.write(data); });
-                    contents.on('end', () => { response.end(); });
-                }
-            }
+            response.writeHead(200, { 'Content-Type': contentType, });
+            readStream.resume();
+            contents.on('data', (data) => { response.write(data); });
+            contents.on('end', () => { response.end(); });
         }
     }else{ response.end("Not found."); }
 });
@@ -96,7 +89,7 @@ async function start(){
     await custodian.dep("ls-1").db().init();
 
     //await custodian.dep("ls-1").db().createTable();
-    //const newFile = await custodian.dep("ls-1").newFile({ name: "testing", ext: "txt", folder: "/encrypted", data: "test", });
+    //const newFile = await custodian.dep("ls-1").newFile({ name: "testing", ext: "txt", folder: "/encrypted", contents: "test", });
     //console.log(newFile);
 
     /*setTimeout(async function () {

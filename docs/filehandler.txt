@@ -21,7 +21,7 @@
     returns true or false
 
 #   makeLocalFile (private) : Creates new local file.
-    input : path, data
+    input : path, contents
     returns true or false
 
 #   getLocalFileSize (private) : Returns size of local file.
@@ -50,7 +50,7 @@
 
 #   getLocalFileContents (private) : Gets contents of a local file.
     input : path
-    returns { isStream: true/false, contents: contents/null }
+    returns { contents: contents/null, contentType, readStream }
 
 #   deleteLocalFile (private) : Deletes a local file.
     input : path
@@ -61,7 +61,7 @@
     returns true or false
 
 #   newFCFile (private) : Returns a new FCFile instance
-    input : { name, ext, folder, data, isEncrypted, user_id, handler }
+    input : { name, ext, folder, contents, isEncrypted, user_id, handler }
     returns FCFile or null
 
 #   getFilesFromHttpRequest (private) : Returns files from a multipart http request using multiparty.
@@ -72,12 +72,8 @@
     input : path
     returns files or []
 
-#   replaceLocalFileData (private) : Replaces data of a local file.
-    input : path, data
-    returns true or false
-
 #   newFile : Creates new file/s in depository.
-    input : { (name, ext, data, isStream)/request, folder, isEncrypted, }
+    input : { (name, ext, contents, isStream)/request, folder, isEncrypted, }
     returns file/s or null
 
 #   deleteFile : Deletes a file from depository.
@@ -103,6 +99,14 @@
 #   syncDB : Syncs all files in the depository to the connected database.
     returns files or []
 
-#   replaceFileData (private) : Replaces file data in depository.
-    input: { file, new_data }
+#   replaceFileContents (private) : Replaces file contents in depository.
+    input: { file, new_contents }
     returns true or false
+
+#   getContentType (private) : Returns content type from a string for http request/response
+    input: fpath
+    returns content type
+
+#   getFileContents (private) Returns contents of a file in depository.
+    input: file instanceof FCFile
+    returns { contents: contents/null, contentType, readStream }

@@ -22,7 +22,7 @@
     returns file schema name
 
 #   newFile : Calls newFile function of default file handler.
-    input: { (name, ext, data)/request, folder, isEncrypted }
+    input: { (name, ext, contents)/request, folder, isEncrypted }
     returns file or null
 
 #   getFile : Calls getFile function of default file handler.
@@ -48,6 +48,6 @@
 #   syncDB : Calls syncDB function of default file handler.
     returns files or []
 
-#   replaceFileData (private) : Calls replaceFileData function of default file handler.
-    input: { file, new_data }
+#   replaceFileContents (private) : Calls replaceFileContents function of default file handler.
+    input: { file, new_contents }
     returns true or false

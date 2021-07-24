@@ -1,5 +1,2 @@
-temp docs
-comments
-replaceFileData
 mongodb
 s3

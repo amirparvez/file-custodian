@@ -1,10 +1,10 @@
 -   FCFileHandler: Each depository is handled by an FCFileHandler. Each file-handler can have one database-handler & one file-protector (FCFileProtector).
 #   Config: { type, base_path, user_id }
 
-#   db : Returns the database handler.
+#   database : Returns the database handler.
     returns database-handler
 
-#   setUser : Sets user id.
+#   user : Sets user id.
     input : user_id
     returns true
 
@@ -96,7 +96,7 @@
     input: file-path
     returns size or 0
 
-#   syncDB : Syncs all files in the depository to the connected database.
+#   syncDatabase : Syncs all files in the depository to the connected database.
     returns files or []
 
 #   replaceFileContents (private) : Replaces file contents in depository.

@@ -45,7 +45,7 @@
     input: file-path
     returns size or 0
 
-#   syncDB : Calls syncDB function of default file handler.
+#   syncDatabase : Calls syncDatabase function of default file handler.
     returns files or []
 
 #   replaceFileContents (private) : Calls replaceFileContents function of default file handler.

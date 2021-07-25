@@ -14,10 +14,11 @@
     "@babel/node": "^7.14.7",
     "@babel/preset-env": "^7.14.7",
     "nodemon": "^2.0.12",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "cors": "^2.8.5"
   },
   "dependencies": {
-    "cors": "^2.8.5",
+    "aws-sdk": "^2.953.0",
     "crypto": "^1.0.1",
     "dotenv": "^10.0.0",
     "joi": "^17.4.1",

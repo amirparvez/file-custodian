@@ -14,7 +14,7 @@ app.get('/', function(request, response){
 });
 
 app.post("/upload/", async function(request, response){
-    await custodian.dep("ls-1").newFile({ request, folder: "/encrypted" }).then(files => {
+    await custodian.depository("s3-1").newFile({ request, folder: "images" }).then(files => {
         console.log("files", files);
     }).catch(error => {
         console.log(error);
@@ -24,7 +24,7 @@ app.post("/upload/", async function(request, response){
 });
 
 app.get("/view/:folder/:name", async function(request, response){
-    const file = await custodian.dep("ls-1").getFile({ name: `${request.params.name.split(".")[0]}`, ext: `${request.params.name.split(".")[1]}`, folder: `/${request.params.folder}`, });
+    const file = await custodian.depository("ls-1").getFile({ name: `${request.params.name.split(".")[0]}`, ext: `${request.params.name.split(".")[1]}`, folder: `${request.params.folder}`, });
     if(file !== null){
         const { contents, contentType, readStream } = await file.getContents();
         if(contents !== null){
@@ -43,16 +43,26 @@ app.listen(3000, () => {
 start();
 
 async function start(){
-    await custodian.newDepository({
+    /*await custodian.newDepository({
         name: "ls-1",
         type: "local-server",
         base_path: "D:/work/engineering/node/file custodian/depository",
         isDefault: true,
+    });*/
+
+    await custodian.newDepository({
+        name: "s3-1",
+        type: "aws-s3",
+        bucket_name: "file-custodian",
+        bucket_region: "ap-south-1",
+        key: "viWRu4Bqgw5Z7oB5Peg7/FNSwF+iHJ6YaKwfeZ/a",
+        key_id: "AKIA3MVO4ES35P6DKVGR",
+        isDefault: true,
     });
 
-    await custodian.dep("ls-1").setUser(1);
+    //await custodian.depository("ls-1").user(1);
 
-    const sequelize = new Sequelize("nodejs2", "mainuser", "1234567890", {
+    /*const sequelize = new Sequelize("nodejs2", "mainuser", "1234567890", {
         host: "localhost",
         port: "3306",
         dialect: "mariadb",
@@ -65,12 +75,12 @@ async function start(){
     });
 
     const UserModel = User({s: sequelize});
-    await UserModel.sync({ alter: true, });
+    await UserModel.sync({ alter: true, });*/
 
-    await custodian.dep("ls-1").newDatabase({
+    await custodian.depository("s3-1").newDatabase({
         host: "localhost",
-        port: "3306"/*"5432"*/,
-        system: "mariadb"/*"postgres"*/,
+        port: "3306",
+        system: "mariadb",
         database: "nodejs",
         username: "mainuser",
         password: "1234567890",
@@ -80,16 +90,19 @@ async function start(){
         //user_model: UserModel,
     });
 
-    await custodian.dep("ls-1").newProtector({
+    /*await custodian.depository("ls-1").newProtector({
       algorithm: "aes-256-ctr",
-    });
+  });*/
 
-    console.log(await custodian.dep("ls-1"));
+    //console.log(await custodian.depository("s3-1"));
 
-    await custodian.dep("ls-1").db().init();
+    await custodian.depository("s3-1").database().connect();
+    await custodian.depository("s3-1").database().createTable();
 
-    //await custodian.dep("ls-1").db().createTable();
-    //const newFile = await custodian.dep("ls-1").newFile({ name: "testing", ext: "txt", folder: "/encrypted", contents: "test", });
+    //const file = await custodian.depository("s3-1").getFile({ name: "abcd2", ext: "txt", });
+    //console.log(file);
+
+    //const newFile = await custodian.depository("s3-1").newFile({ name: "testing", ext: "txt", contents: "test", });
     //console.log(newFile);
 
     /*setTimeout(async function () {
@@ -103,15 +116,15 @@ async function start(){
         console.log(await userOne.FCFiles);
     }, 1000);*/
 
-    //const files = await custodian.dep("ls-1").syncDB();
-    //const files = await custodian.dep("ls-1").searchFiles({ folder: "/jpeg", /*query: "NAME_CONTAINS:infi",*/ });
-    //console.log(files);
+    const files = await custodian.depository("s3-1").syncDatabase();
+    //const files = await custodian.depository("s3-1").searchFiles({ folder: "images", /*query: "NAME_CONTAINS:infi",*/ });
+    console.log(files);
 
     //const response = await files[0].rename("testing3");
     //const response = await files[0].delete();
     //console.log(response);
 
     //for(let file of files){
-        //const model = await file.createModel();
+        //const model = await file.record();
     //}
 }

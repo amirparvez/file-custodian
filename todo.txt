@@ -1,2 +1,3 @@
+refreshModelSpecificDataOnSuccessfulActions
 mongodb
 s3

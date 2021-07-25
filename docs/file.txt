@@ -15,7 +15,7 @@
 #   protect : If file contents is not encrypted according the database entry, encrypt it. If no database is connected to check, encrypt it anyways.
     returns true or false
 
-#   createModel: Creates new database entry for a file.
+#   record: Creates new database entry for a file.
     returns FCFile or null
 
 #   getContents: Calls getFileContents function of it's handler which returns file contents.

@@ -43,12 +43,12 @@ app.listen(3000, () => {
 start();
 
 async function start(){
-    /*await custodian.newDepository({
+    await custodian.newDepository({
         name: "ls-1",
         type: "local-server",
         base_path: "D:/work/engineering/node/file custodian/depository",
-        isDefault: true,
-    });*/
+        isDefault: false,
+    });
 
     await custodian.newDepository({
         name: "s3-1",
@@ -90,14 +90,28 @@ async function start(){
         //user_model: UserModel,
     });
 
+    await custodian.depository("ls-1").newDatabase({
+        host: "localhost",
+        port: "3306",
+        system: "mariadb",
+        database: "nodejs",
+        username: "mainuser",
+        password: "1234567890",
+        table_name: "fcfiles",
+        proper_delete: false,
+        //sequelize_instance: sequelize,
+        //user_model: UserModel,
+    });
+
     /*await custodian.depository("ls-1").newProtector({
       algorithm: "aes-256-ctr",
   });*/
 
     //console.log(await custodian.depository("s3-1"));
 
+    await custodian.depository("ls-1").database().connect();
     await custodian.depository("s3-1").database().connect();
-    await custodian.depository("s3-1").database().createTable();
+    //await custodian.depository("s3-1").database().createTable();
 
     //const file = await custodian.depository("s3-1").getFile({ name: "abcd2", ext: "txt", });
     //console.log(file);
@@ -116,9 +130,9 @@ async function start(){
         console.log(await userOne.FCFiles);
     }, 1000);*/
 
-    const files = await custodian.depository("s3-1").syncDatabase();
-    //const files = await custodian.depository("s3-1").searchFiles({ folder: "images", /*query: "NAME_CONTAINS:infi",*/ });
-    console.log(files);
+    //const files = await custodian.depository("s3-1").syncDatabase();
+    //const files = await custodian.depository("ls-1").searchFiles({ folder: "*", forceRequestToS3: false, /*query: "NAME_CONTAINS:infi",*/ });
+    //console.log(files);
 
     //const response = await files[0].rename("testing3");
     //const response = await files[0].delete();

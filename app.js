@@ -6,6 +6,8 @@ import User from './lib/assets/models/User';
 
 const custodian = new FileCustodian({ name: "Jack", });
 
+const path = require('path');
+
 const app = express();
 app.use(express.static(__dirname + '/client'));
 
@@ -14,7 +16,7 @@ app.get('/', function(request, response){
 });
 
 app.post("/upload/", async function(request, response){
-    await custodian.depository("s3-1").newFile({ request, folder: "images" }).then(files => {
+    await custodian.depository("s3-1").newFile({ request, folder: "images/flowers" }).then(files => {
         console.log("files", files);
     }).catch(error => {
         console.log(error);
@@ -23,8 +25,9 @@ app.post("/upload/", async function(request, response){
     response.end("uploaded");
 });
 
-app.get("/view/:folder/:name", async function(request, response){
-    const file = await custodian.depository("ls-1").getFile({ name: `${request.params.name.split(".")[0]}`, ext: `${request.params.name.split(".")[1]}`, folder: `${request.params.folder}`, });
+app.get("/view/:path*", async function(request, response){
+    var parsedPath = path.parse(request.params.path+request.params[0]);
+    const file = await custodian.depository("s3-1").getFile({ name: `${parsedPath.name}`, ext: `${parsedPath.ext.split(".")[1]}`, folder: `${parsedPath.dir}`, });
     if(file !== null){
         const { contents, contentType, readStream } = await file.getContents();
         if(contents !== null){
@@ -32,7 +35,7 @@ app.get("/view/:folder/:name", async function(request, response){
             readStream.resume();
             contents.on('data', (data) => { response.write(data); });
             contents.on('end', () => { response.end(); });
-        }
+        }else{ response.end("Invalid contents."); }
     }else{ response.end("Not found."); }
 });
 
@@ -103,9 +106,8 @@ async function start(){
         //user_model: UserModel,
     });
 
-    /*await custodian.depository("ls-1").newProtector({
-      algorithm: "aes-256-ctr",
-  });*/
+    await custodian.depository("ls-1").newProtector({ algorithm: "aes-256-ctr", });
+    await custodian.depository("s3-1").newProtector({ algorithm: "aes-256-ctr", });
 
     //console.log(await custodian.depository("s3-1"));
 
@@ -113,8 +115,9 @@ async function start(){
     await custodian.depository("s3-1").database().connect();
     //await custodian.depository("s3-1").database().createTable();
 
-    //const file = await custodian.depository("s3-1").getFile({ name: "abcd2", ext: "txt", });
-    //console.log(file);
+    //const file = await custodian.depository("s3-1").getFile({ name: "tulips", ext: "jpg", folder: "images/flowers" });
+    //const protectedFile = await file.protect();
+    //console.log(protectedFile);
 
     //const newFile = await custodian.depository("s3-1").newFile({ name: "testing", ext: "txt", contents: "test", });
     //console.log(newFile);
@@ -135,7 +138,7 @@ async function start(){
     //console.log(files);
 
     //const response = await files[0].rename("testing3");
-    //const response = await files[0].delete();
+    //const response = await file.delete();
     //console.log(response);
 
     //for(let file of files){

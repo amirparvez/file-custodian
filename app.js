@@ -16,7 +16,7 @@ app.get('/', function(request, response){
 });
 
 app.post("/upload/", async function(request, response){
-    await custodian.depository("s3-1").newFile({ request, folder: "images/flowers" }).then(files => {
+    await custodian.depository("ls-1").newFile({ request, folder: "images/flowers" }).then(files => {
         console.log("files", files);
     }).catch(error => {
         console.log(error);
@@ -27,11 +27,11 @@ app.post("/upload/", async function(request, response){
 
 app.get("/view/:path*", async function(request, response){
     var parsedPath = path.parse(request.params.path+request.params[0]);
-    const file = await custodian.depository("s3-1").getFile({ name: `${parsedPath.name}`, ext: `${parsedPath.ext.split(".")[1]}`, folder: `${parsedPath.dir}`, });
+    const file = await custodian.depository("ls-1").getFile({ name: `${parsedPath.name}`, ext: `${parsedPath.ext.split(".")[1]}`, folder: `${parsedPath.dir}`, });
     if(file !== null){
-        const { contents, contentType, readStream } = await file.getContents();
+        const { contents, contentType, contentLength, readStream } = await file.getContents();
         if(contents !== null){
-            response.writeHead(200, { 'Content-Type': contentType, });
+            response.writeHead(200, { 'Content-Type': contentType, 'Content-Length': contentLength, });
             readStream.resume();
             contents.on('data', (data) => { response.write(data); });
             contents.on('end', () => { response.end(); });
@@ -106,7 +106,7 @@ async function start(){
         //user_model: UserModel,
     });
 
-    await custodian.depository("ls-1").newProtector({ algorithm: "aes-256-ctr", });
+    //await custodian.depository("ls-1").newProtector({ algorithm: "aes-256-ctr", });
     await custodian.depository("s3-1").newProtector({ algorithm: "aes-256-ctr", });
 
     //console.log(await custodian.depository("s3-1"));
@@ -115,9 +115,9 @@ async function start(){
     await custodian.depository("s3-1").database().connect();
     //await custodian.depository("s3-1").database().createTable();
 
-    //const file = await custodian.depository("s3-1").getFile({ name: "tulips", ext: "jpg", folder: "images/flowers" });
-    //const protectedFile = await file.protect();
-    //console.log(protectedFile);
+    /*const file = await custodian.depository("ls-1").getFile({ name: "Penguins", ext: "jpg", folder: "images/flowers" });
+    const protectedFile = await file.protect();
+    console.log(protectedFile);*/
 
     //const newFile = await custodian.depository("s3-1").newFile({ name: "testing", ext: "txt", contents: "test", });
     //console.log(newFile);

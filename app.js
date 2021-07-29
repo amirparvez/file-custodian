@@ -27,7 +27,7 @@ app.post("/upload/", async function(request, response){
 
 app.get("/view/:path*", async function(request, response){
     var parsedPath = path.parse(request.params.path+request.params[0]);
-    const file = await custodian.depository("ls-1").getFile({ name: `${parsedPath.name}`, ext: `${parsedPath.ext.split(".")[1]}`, folder: `${parsedPath.dir}`, });
+    const file = await custodian.depository("s3-1").getFile({ name: `${parsedPath.name}`, ext: `${parsedPath.ext.split(".")[1]}`, folder: `${parsedPath.dir}`, });
     if(file !== null){
         const { contents, contentType, contentLength, readStream } = await file.getContents();
         if(contents !== null){
@@ -65,21 +65,6 @@ async function start(){
 
     //await custodian.depository("ls-1").user(1);
 
-    /*const sequelize = new Sequelize("nodejs2", "mainuser", "1234567890", {
-        host: "localhost",
-        port: "3306",
-        dialect: "mariadb",
-        timezone: "+00:00",
-        dialectOptions: {
-          connectTimeout: 90000,
-          useUTC: true,
-          timezone: "+00:00",
-        },
-    });
-
-    const UserModel = User({s: sequelize});
-    await UserModel.sync({ alter: true, });*/
-
     await custodian.depository("s3-1").newDatabase({
         host: "localhost",
         port: "3306",
@@ -106,42 +91,55 @@ async function start(){
         //user_model: UserModel,
     });
 
-    //await custodian.depository("ls-1").newProtector({ algorithm: "aes-256-ctr", });
+    await custodian.depository("ls-1").newProtector({ algorithm: "aes-256-ctr", });
     await custodian.depository("s3-1").newProtector({ algorithm: "aes-256-ctr", });
-
-    //console.log(await custodian.depository("s3-1"));
 
     await custodian.depository("ls-1").database().connect();
     await custodian.depository("s3-1").database().connect();
     //await custodian.depository("s3-1").database().createTable();
 
-    /*const file = await custodian.depository("ls-1").getFile({ name: "Penguins", ext: "jpg", folder: "images/flowers" });
-    const protectedFile = await file.protect();
-    console.log(protectedFile);*/
+    /*const file = await custodian.depository("s3-1").getFile({ name: "Jellyfish", ext: "jpg", folder: "images" });
+    const unprotectedFile = await file.unprotect();
+    console.log(unprotectedFile);*/
 
     //const newFile = await custodian.depository("s3-1").newFile({ name: "testing", ext: "txt", contents: "test", });
     //console.log(newFile);
-
-    /*setTimeout(async function () {
-        const userOne = await UserModel.findOne({
-            where: {
-                id: 1
-            },
-            include: { all: true },
-        });
-
-        console.log(await userOne.FCFiles);
-    }, 1000);*/
 
     //const files = await custodian.depository("s3-1").syncDatabase();
     //const files = await custodian.depository("ls-1").searchFiles({ folder: "*", forceRequestToS3: false, /*query: "NAME_CONTAINS:infi",*/ });
     //console.log(files);
 
-    //const response = await files[0].rename("testing3");
-    //const response = await file.delete();
-    //console.log(response);
+    //const response1 = await files[0].rename("testing3");
+    //const response2 = await files[0].delete();
 
     //for(let file of files){
         //const model = await file.record();
     //}
 }
+
+
+/*const sequelize = new Sequelize("nodejs2", "mainuser", "1234567890", {
+    host: "localhost",
+    port: "3306",
+    dialect: "mariadb",
+    timezone: "+00:00",
+    dialectOptions: {
+      connectTimeout: 90000,
+      useUTC: true,
+      timezone: "+00:00",
+    },
+});
+
+const UserModel = User({s: sequelize});
+await UserModel.sync({ alter: true, });*/
+
+/*setTimeout(async function () {
+    const userOne = await UserModel.findOne({
+        where: {
+            id: 1
+        },
+        include: { all: true },
+    });
+
+    console.log(await userOne.FCFiles);
+}, 1000);*/

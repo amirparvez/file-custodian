@@ -1,2 +1,6 @@
 node_modules/
 depository/
+client/
+**/docs/*.txt
+todo.txt
+app.js

@@ -20,7 +20,7 @@ custodian.depository("s3-1").database().config
 
 <br>
 
-#### **Establishing a connection with the database**
+### **Establishing a connection with the database**
 
 This must be always done just after creating a new database.
 
@@ -31,7 +31,7 @@ await custodian.depository("ls-1").database().connect();
 
 <br>
 
-#### **Creating a new table**
+### **Creating a new table**
 
 This will create a new table in the database.
 

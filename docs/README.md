@@ -1,6 +1,6 @@
 # **Api Documentation**
 
-#### **Creating a new custodian**
+### **Creating a new custodian**
 
 Each custodian can manage **multiple depositories**.
 
@@ -16,7 +16,7 @@ const custodian = new FileCustodian({ name: "Boogeyman", });
 
 <br>
 
-#### **Creating a new depository**
+### **Creating a new depository**
 
 Depository is where files are stored. Each depository can have one **protector** and **database handler**.
 

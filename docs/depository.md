@@ -27,14 +27,15 @@ custodian.depository("s3-1").config
 <br>
 
 > NOTE: **You can call all functions of the default depository without specifying it's name**.
-> ```js
-> custodian.getFile(...); // Default depository
-> custodian.depository(depositoryName).getFile(...); // Specific depository
-  ```
+
+```js
+custodian.getFile(...); // Default depository
+custodian.depository(depositoryName).getFile(...); // Specific depository
+```
 
 <br>
 
-#### **Creating a new database for depository**
+### **Creating a new database for depository**
 
 Database is used to **store information** about the depository's files.
 
@@ -84,7 +85,7 @@ Learn more from [Database Documentation](https://github.com/amirparvez/file-cust
 
 <br>
 
-#### **Syncing database with depository**
+### **Syncing database with depository**
 
 This will create an entry for each file in the database if it does not exists.
 
@@ -95,7 +96,7 @@ const files = await custodian.depository("s3-1").syncDatabase();
 
 <br>
 
-#### **Creating a new protector for depository**
+### **Creating a new protector for depository**
 
 Protector is used to **encrypt** and **decrypt** depository's files.
 
@@ -110,7 +111,7 @@ const success = await custodian.depository("s3-1").newProtector({ algorithm: "ae
 
 <br>
 
-#### **Updating the current user**
+### **Updating the current user**
 
 This will set the current user id for the depository.
 
@@ -130,7 +131,7 @@ custodian.depository("ls-1").user(null); // Ignore user
 
 <br>
 
-#### **Creating a new file**
+### **Creating a new file**
 
 This will save a new file in the depository.
 
@@ -198,7 +199,7 @@ app.post("/upload", async function(request, response){
 
 <br>
 
-#### **Fetching a file**
+### **Fetching a file**
 
 This will get a file from the depository.
 
@@ -227,7 +228,7 @@ const file = await custodian.depository("s3-1").getFile({ path: "testing/file.tx
 
 <br>
 
-#### **Searching files**
+### **Searching files**
 
 This will search files in the depository.
 

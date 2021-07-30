@@ -207,7 +207,7 @@ This will get a file from the depository.
 | :--- |    :---   |  :---:   | :---: | :---: |
 | name (STRING) | Name for the file | True | - | - |
 | ext (STRING) | Extension for the file, without dot | True | - | - |
-| folder (STRING) | Folder to get the file from | True | - | Depository root |
+| folder (STRING) | Folder to get the file from | False | - | Depository root |
 | path (STRING) | Path of the file | False | - | - |
 
 > WARNING: Paths must never start or end with a slash.
@@ -244,7 +244,7 @@ This will search files in the depository.
 
 > NOTE: forceRequestToS3 is only applicable to S3 depositories.
 
-> NOTE: null query will get all files in the depository.
+> NOTE: null query will get all files in the folder.
 
 ```js
 const pngFiles = await custodian.depository("s3-1").searchFiles({

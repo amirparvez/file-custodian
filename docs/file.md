@@ -24,7 +24,7 @@ file.config
 
 <br>
 
-#### **Recording a file's information in database**
+### **Recording a file's information in database**
 
 This will create an entry in database for the file if it does not exists.
 
@@ -35,7 +35,7 @@ const success = await file.record();
 
 <br>
 
-#### **Renaming a file**
+### **Renaming a file**
 
 This will rename the file and update the database if connected.
 
@@ -50,7 +50,7 @@ const success = await file.rename("newname");
 
 <br>
 
-#### **Deleting a file**
+### **Deleting a file**
 
 This will delete the file and update the database if connected.
 
@@ -61,7 +61,7 @@ const success = await file.delete();
 
 <br>
 
-#### **Protecting a file**
+### **Protecting a file**
 
 This will encrypt the file and update the database if connected.
 
@@ -72,7 +72,7 @@ const success = await file.protect();
 
 <br>
 
-#### **Unprotecting a file**
+### **Unprotecting a file**
 
 This will decrypt the file and update the database if connected.
 
@@ -83,7 +83,7 @@ const success = await file.unprotect();
 
 <br>
 
-#### **Reading a file**
+### **Reading a file**
 
 This will read the file.
 
@@ -126,7 +126,7 @@ app.get("/view/:path*", async function(request, response){
  {
      contents: PIPELINE/STREAM/null,
      contentType: contentType/null, // example: image/png
-     contentLength: contentLength/null, // example: 891723
+     contentLength: contentLength/0, // example: 891723
      readStream: STREAM/null
  }
 ```

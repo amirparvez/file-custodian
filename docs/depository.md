@@ -104,6 +104,17 @@ Protector is used to **encrypt** and **decrypt** depository's files.
 | :--- |    :---   |  :---:   | :---: | :---: |
 | algorithm (STRING) | Encryption algorithm | False | aes-256-ctr | aes-256-ctr |
 
+> NOTE: You have to add your own 32 byte key in hex form, to the config.json file. If you leave it null or empty then protector will generate one itself. Make sure to keep that safe.
+
+```js
+{
+    "debug": true,
+    "file_protector_key": "YOURKEY" // null or ""
+}
+```
+
+> NOTE: Protector uses a unique initialization vector for each file, which is stored in the file itself.
+
 ```js
 const success = await custodian.depository("s3-1").newProtector({ algorithm: "aes-256-ctr" });
 ```

@@ -1,11 +1,11 @@
 {
   "name": "file-custodian",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A javaScript library for managing files at different depositories simultaneously.",
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec babel-node app.js",
-    "test": "echo \"No test specified\"
+    "test": "echo \"No test specified\""
   },
   "author": "Amir A. Parvez aka Mohd. Amir",
   "license": "ISC",

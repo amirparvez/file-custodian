@@ -35,6 +35,8 @@ await custodian.depository("ls-1").database().connect();
 
 This will create a new table in the database.
 
+> NOTE: This is valid only when NOT using mongodb.
+
 > NOTE: If the table already exists it will be dropped and recreated.
 
 ```js

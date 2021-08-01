@@ -51,8 +51,11 @@ Database is used to **store information** about the depository's files.
 | properDelete (BOOLEAN) | False for deleting the file only & True for deleting the information from the database also | False | - | false |
 | sequelizeInstance | Sequelize instance | False | - | - |
 | userModel | Sequelize User Model for establishing a relationship with File Model | False | - | - |
+| url | MongoDB url | mongodb:True | - | - |
 
-> NOTE: host, port, database, userName and password is not required when providing your own sequelize instance.
+> NOTE: You can only provide userModel and sequelizeInstance when NOT using mongodb.
+
+> NOTE: host, port, database, userName and password is not required when providing your own sequelize instance OR when using mongodb.
 
 ```js
 const success = await custodian.depository("s3-1").newDatabase({
@@ -76,8 +79,16 @@ const success = await custodian.depository("s3-1").newDatabase({
     userModel: UserModel,
 });
 
+// MongoDB
+const success = await custodian.depository("s3-1").newDatabase({
+    system: "mongodb",
+    url: `mongodb+srv://${username}:${password}@xxxxxx.xxxxx.mongodb.net/${database}`,
+    tableName: "xxxxx",
+    properDelete: false,
+});
+
 await custodian.depository("s3-1").database().connect();
-await custodian.depository("s3-1").database().createTable();
+await custodian.depository("s3-1").database().createTable(); // Invalid when using mongodb
 ```
 >Returns **true** or **false**.
 
@@ -88,6 +99,8 @@ Learn more from [Database Documentation](https://github.com/amirparvez/file-cust
 ### **Syncing database with depository**
 
 This will create an entry for each file in the database if it does not exists.
+
+> WARNING: Syncing database and depository will result in encryption of files whose entry does not exists in the database if a protector is connected, since it will not be possible to know whether a file is already encrypted or not. To ignore this behaviour, disconnect the protector when syncing.
 
 ```js
 const files = await custodian.depository("s3-1").syncDatabase();

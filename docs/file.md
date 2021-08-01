@@ -17,6 +17,7 @@ file.config
     updated_at,
     deleted_at,
     userId,
+    iv,
     handler, // Depository object
 }
 

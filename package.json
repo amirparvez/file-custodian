@@ -25,6 +25,7 @@
     "mariadb": "^2.5.4",
     "mime-types": "^2.1.31",
     "moment": "^2.29.1",
+    "mongoose": "^5.13.5",
     "multiparty": "^4.2.2",
     "mysql2": "^2.2.5",
     "pg": "^8.6.0",

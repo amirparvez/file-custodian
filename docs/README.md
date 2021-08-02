@@ -23,12 +23,12 @@ Depository is where files are stored. Each depository can have one **protector**
 | Field | Description | Required | Options | Default |
 | :--- |    :---   |  :---:   | :---: | :---: |
 | name (STRING) | Unique name for the depository | True | - | - |
-| type (STRING) | Type of the depository  | True | local-server, aws-s3 | - |
+| type (STRING) | Type of the depository  | True | local-server, aws-s3, do-spaces | - |
 | basePath (STRING) | Base/Root path of the depository | False | - | System/Bucket root |
-| bucketName (STRING) | Amazon S3 bucket name | s3:True | - | - |
-| bucketRegion (STRING) | Amazon S3 bucket region | s3:True | - | - |
-| key (STRING) | Amazon S3 key | s3:True | - | - |
-| keyId (STRING) | Amazon S3 key id | s3:True | - | - |
+| bucketName (STRING) | Amazon S3 bucket/DO Space name | s3,do:True | - | - |
+| bucketRegion (STRING) | Amazon S3 bucket/DO Space region | s3,do:True | - | - |
+| key (STRING) | Amazon S3 key/DO Spaces secret | s3,do:True | - | - |
+| keyId (STRING) | Amazon S3 key id/DO Spaces key | s3,do:True | - | - |
 | readingSpeed (INTEGER) | Chunk size when reading, in bytes | False | - | 16384 |
 | writingSpeed (INTEGER) | Chunk size when writing, in bytes | False | - | 16384 |
 | encryptingSpeed (INTEGER) | Chunk size when encrypting & decrypting, in bytes | False | - | 16384 |
@@ -53,6 +53,17 @@ const success = await custodian.newDepository({
 const success = await custodian.newDepository({
     name: "s3-1",
     type: "aws-s3",
+    bucketName: "file-custodian",
+    bucketRegion: "xx-xxxxx-x",
+    key: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    keyId: "xxxxxxxxxxxxxxxxxxxx",
+    isDefault: true,
+});
+
+// DigitalOcean Spaces
+const success = await custodian.newDepository({
+    name: "do-1",
+    type: "do-spaces",
     bucketName: "file-custodian",
     bucketRegion: "xx-xxxxx-x",
     key: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",

@@ -5,18 +5,17 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec babel-node app.js",
-    "test": "echo \"No test specified\""
+    "build": "babel -d ./build ./lib --copy-files"
   },
   "author": "Amir A. Parvez aka Mohd. Amir",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.14.6",
-    "@babel/node": "^7.14.7",
-    "@babel/preset-env": "^7.14.7",
-    "nodemon": "^2.0.12",
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/node": "^7.14.9",
+    "@babel/preset-env": "^7.15.0",
     "express": "^4.17.1",
-    "cors": "^2.8.5",
-    "dotenv": "^10.0.0"
+    "nodemon": "^2.0.12"
   },
   "dependencies": {
     "aws-sdk": "^2.953.0",

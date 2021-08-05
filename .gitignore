@@ -4,3 +4,4 @@ client/
 **/docs/*.txt
 todo.txt
 app.js
+build/

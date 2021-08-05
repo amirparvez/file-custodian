@@ -2,7 +2,7 @@
 
 Configuration:
 ```js
-custodian.depository("s3-1").config
+custodian.depository(depositoryName).config
 
 {
     type,
@@ -12,17 +12,33 @@ custodian.depository("s3-1").config
     writingSpeed,
     encryptingSpeed,
 
-    //S3
-    ...{
-        bucketName,
-        bucketRegion,
-        keyId,
-        key,
-        s3, //S3 Object
-    }
+    // S3/DO Spaces
+    bucketName,
+    bucketRegion,
+    keyId,
+    key,
+    s3, // S3 Object
+
+    // Mega
+    email,
+    password,
+    mega, // Mega Object
+    spaceAvailable,
 }
 
 ```
+<br>
+
+### **Initialization**
+
+This will setup the depository.
+
+> NOTE: This must always be done.
+
+```js
+await custodian.depository("ls-1").init();
+```
+>Returns true or false.
 
 <br>
 

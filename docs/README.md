@@ -23,7 +23,9 @@ Depository is where files are stored. Each depository can have one **protector**
 | Field | Description | Required | Options | Default |
 | :--- |    :---   |  :---:   | :---: | :---: |
 | name (STRING) | Unique name for the depository | True | - | - |
-| type (STRING) | Type of the depository  | True | local-server, aws-s3, do-spaces | - |
+| email (STRING) | Email of mega account | mega:True | - | - |
+| password (STRING) | Password of mega account | mega:True | - | - |
+| type (STRING) | Type of the depository  | True | local-server, aws-s3, do-spaces, mega | - |
 | basePath (STRING) | Base/Root path of the depository | False | - | System/Bucket root |
 | bucketName (STRING) | Amazon S3 bucket/DO Space name | s3,do:True | - | - |
 | bucketRegion (STRING) | Amazon S3 bucket/DO Space region | s3,do:True | - | - |
@@ -39,6 +41,8 @@ Depository is where files are stored. Each depository can have one **protector**
 > WARNING: Files can only be successfully decrypted at the same speed they were encrypted. Play with this value carefully.
 
 > WARNING: Paths must never start or end with a slash.
+
+> NOTE: Sometimes, lag has been noticed in reading files from MEGA. Source of this problem is unidentified yet.
 
 ```js
 // Local
@@ -70,6 +74,17 @@ const success = await custodian.newDepository({
     keyId: "xxxxxxxxxxxxxxxxxxxx",
     isDefault: true,
 });
+
+// Mega
+await custodian.newDepository({
+    name: "m-1",
+    type: "mega",
+    email: "xxxxxxxxxxx@xxxxxx.xxx",
+    password: "xxxxxxxxx",
+    isDefault: true,
+});
+
+await custodian.depository(depositoryName).init(); // Important
 ```
 >Returns **true** or **false**.
 

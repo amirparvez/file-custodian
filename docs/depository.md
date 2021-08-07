@@ -104,7 +104,7 @@ const success = await custodian.depository("s3-1").newDatabase({
 });
 
 await custodian.depository("s3-1").database().connect();
-await custodian.depository("s3-1").database().createTable(); // Invalid when using mongodb
+await custodian.depository("s3-1").database().createTable();
 ```
 >Returns **true** or **false**.
 

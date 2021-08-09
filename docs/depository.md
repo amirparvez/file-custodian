@@ -188,6 +188,8 @@ This will save a new file in the depository.
 
 > WARNING: Paths must never start or end with a slash.
 
+> WARNING: In MEGA depositories, an unidentified error occurs when a file of length less than 14 bytes is being encrypted and uploaded. The source of this error with high probability is in megajs library which is used in this library and resides somewhere in how it handles the data events of the source stream in it's upload functions. I can be wrong too. There are no problems if the file length is 14 bytes or longer or if you are not encrypting it.
+
 > NOTE: name, ext and contents is not required when providing an HTTP request.
 
 > NOTE: Adding FILE_EXTENSION_WISE to folder path will save the file/s in folder/s named to their extension/s.

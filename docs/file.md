@@ -40,6 +40,8 @@ const success = await file.record();
 
 This will rename the file and update the database if connected.
 
+> WARNING: Behind the scenes the file is copied with the new name. Speed of renaming files depends on your storage provider.
+
 | Parameter | Description | Required | Options | Default |
 | :--- |    :---   |  :---:   | :---: | :---: |
 | newName (STRING) | New name for the file, without extension | True | - | - |
@@ -98,6 +100,8 @@ const { contents, contentType, contentLength, readStream } = await file.getConte
 
 > NOTE: This always returns the decrypted contents except when a protector is not created.
 
+> NOTE: contents do not include the initialization vector used to encrypt the file but contentLength is greater by 34 which is the number of bytes used in the file for storing the iv if the file is encrypted, subtracting 34 from it will give you it's real length.
+
 Example of returing a file as http response:
 
 ```js
@@ -112,7 +116,7 @@ app.get("/view/:path*", async function(request, response){
     if(file){
         const { contents, contentType, contentLength, readStream } = await file.getContents();
         if(contents){
-            response.writeHead(200, { 'Content-Type': contentType, 'Content-Length': contentLength, });
+            response.writeHead(200, { 'Content-Type': contentType, 'Content-Length': contentLength-(file.config.isEncrypted === true ? 34 : 0), });
 
             readStream.resume();
             contents.on('data', (data) => { response.write(data); });

@@ -25,24 +25,31 @@ Depository is where files are stored. Each depository can have one **protector**
 | name (STRING) | Unique name for the depository | True | - | - |
 | email (STRING) | Email of mega account | mega:True | - | - |
 | password (STRING) | Password of mega account | mega:True | - | - |
-| type (STRING) | Type of the depository  | True | local-server, aws-s3, do-spaces, mega | - |
+| type (STRING) | Type of the depository  | True | local-server, aws-s3, do-spaces, mega, bb-b2 | - |
 | basePath (STRING) | Base/Root path of the depository | False | - | System/Bucket root |
-| bucketName (STRING) | Amazon S3 bucket/DO Space name | s3,do:True | - | - |
-| bucketRegion (STRING) | Amazon S3 bucket/DO Space region | s3,do:True | - | - |
-| key (STRING) | Amazon S3 key/DO Spaces secret | s3,do:True | - | - |
-| keyId (STRING) | Amazon S3 key id/DO Spaces key | s3,do:True | - | - |
+| bucketName (STRING) | (Amazon S3/Backblaze B2) bucket/DO Space name | s3,do,bb:True | - | - |
+| bucketRegion (STRING) | (Amazon S3/Backblaze B2) bucket/DO Space region | s3,do,bb:True | - | - |
+| key (STRING) | Amazon S3 key/DO Spaces secret/Backblaze B2 application key | s3,do,bb:True | - | - |
+| endpoint (STRING) | DO Spaces/Backblaze B2 endpoint | do,bb:True | - | - |
+| keyId (STRING) | (Amazon S3/Backblaze B2) key id/DO Spaces key | s3,do,bb:True | - | - |
 | readingSpeed (INTEGER) | Chunk size when reading, in bytes | False | - | 16384 |
 | writingSpeed (INTEGER) | Chunk size when writing, in bytes | False | - | 16384 |
 | encryptingSpeed (INTEGER) | Chunk size when encrypting & decrypting, in bytes | False | - | 16384 |
 | isDefault (BOOLEAN) | Sets the depository as default for the custodian | True | - | - |
 
-> NOTE: readingSpeed, writingSpeed & encryptingSpeed affect memory usage of the library.
+> WARNING: Paths must never start or end with a slash.
+
+> WARNING: File versioning is not supported yet, make sure to disable it from Amazon and Backblaze B2 for your bucket.
+
+> WARNING: readingSpeed, writingSpeed & encryptingSpeed affect memory usage of the library.
 
 > WARNING: Files can only be successfully decrypted at the same speed they were encrypted. Play with this value carefully.
 
-> WARNING: Paths must never start or end with a slash.
-
 > NOTE: Sometimes, lag has been noticed in reading files from MEGA. Source of this problem is unidentified yet.
+
+> NOTE: You must create your Backblaze B2 bucket manually and it should be public.
+
+> NOTE: If a Backblaze B2 Application Key is restricted to a bucket, the listAllBucketNames permission is required for compatibility with SDKs.
 
 ```js
 // Local
@@ -72,6 +79,7 @@ const success = await custodian.newDepository({
     bucketRegion: "xx-xxxxx-x",
     key: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     keyId: "xxxxxxxxxxxxxxxxxxxx",
+    endpoint: "xxxx.digitaloceanspaces.com",
     isDefault: true,
 });
 
@@ -81,6 +89,18 @@ await custodian.newDepository({
     type: "mega",
     email: "xxxxxxxxxxx@xxxxxx.xxx",
     password: "xxxxxxxxx",
+    isDefault: true,
+});
+
+// Backblaze B2
+await custodian.newDepository({
+    name: "b2-1",
+    type: "bb-b2",
+    bucketName: "file-custodian",
+    bucketRegion: "xx-xxxxx-x",
+    key: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    keyId: "xxxxxxxxxxxxxxxxxxxx",
+    endpoint: "xx.xx-xxxx-xxx.backblazeb2.com",
     isDefault: true,
 });
 

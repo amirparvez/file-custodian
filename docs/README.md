@@ -37,7 +37,7 @@ Depository is where files are stored. Each depository can have one **protector**
 | encryptingSpeed (INTEGER) | Chunk size when encrypting & decrypting, in bytes | False | - | 16384 |
 | isDefault (BOOLEAN) | Sets the depository as default for the custodian | True | - | - |
 
-> WARNING: Paths must never start or end with a slash.
+> WARNING: Paths must only have forward slashes and must never start or end with a slash.
 
 > WARNING: File versioning is not supported yet, make sure to disable it from Amazon and Backblaze B2 for your bucket.
 

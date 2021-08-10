@@ -5,3 +5,4 @@ client/
 todo.txt
 app.js
 build/
+tests/mytests.config.js

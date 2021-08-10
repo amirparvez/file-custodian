@@ -186,7 +186,7 @@ This will save a new file in the depository.
 | contentLength (INTEGER) | Length of contents, REQUIRED when providing a stream | - | - | - |
 | request (HTTP REQUEST) | HTTP multipart/form-data request containing files | False | - | - |
 
-> WARNING: Paths must never start or end with a slash.
+> WARNING: Paths must only have forward slashes and must never start or end with a slash.
 
 > WARNING: In MEGA depositories, an unidentified error occurs when a file of length less than 14 bytes is being encrypted and uploaded. The source of this error with high probability is in megajs library which is used in this library and resides somewhere in how it handles the data events of the source stream in it's upload functions. I can be wrong too. There are no problems if the file length is 14 bytes or longer or if you are not encrypting it.
 
@@ -252,7 +252,7 @@ This will get a file from the depository.
 | folder (STRING) | Folder to get the file from | False | - | Depository root |
 | path (STRING) | Path of the file | False | - | - |
 
-> WARNING: Paths must never start or end with a slash.
+> WARNING: Paths must only have forward slashes and must never start or end with a slash.
 
 > NOTE: name, ext, and folder is not required when providing the path.
 
@@ -281,7 +281,7 @@ This will search files in the depository.
 | forceRequestToS3 (BOOLEAN) | When true, make request to S3 instead of searching in the database | False | - | false |
 | forceRequestToMega (BOOLEAN) | When true, make request to MEGA instead of searching in the database | False | - | false |
 
-> WARNING: Paths must never start or end with a slash.
+> WARNING: Paths must only have forward slashes and must never start or end with a slash.
 
 > WARNING: Forcing a request to s3 might affect your s3 costs.
 

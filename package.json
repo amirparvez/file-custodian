@@ -1,8 +1,13 @@
 {
   "name": "file-custodian",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A javaScript library for managing files at different depositories simultaneously.",
-  "main": "./lib/index.js",
+  "repository": "amirparvez/file-custodian",
+  "files": [
+    "build",
+    "docs"
+  ],
+  "main": "./build/index.js",
   "scripts": {
     "build": "babel -d ./build ./lib --copy-files",
     "test": "echo \"No tests specified\""
@@ -10,7 +15,7 @@
   "jest": {
     "testSequencer": "./tests/tests.sequencer.js"
   },
-  "author": "Amir A. Parvez aka Mohd. Amir",
+  "author": "Amir A. Parvez",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.14.8",

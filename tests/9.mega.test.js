@@ -79,7 +79,7 @@ describe('mega', () => {
         }, timeout);
 
         test('mega.depository.file.search', async () => {
-            const response = await custodian.depository(TestsConfig.megaDepository.name).searchFiles({ folder: "tests", query: "NAME:testfile_rename", forceRequestToMega: true })
+            const response = await custodian.depository(TestsConfig.megaDepository.name).searchFiles({ folder: "tests", query: "NAME:testfile_rename", forceRequestToProvider: true })
             expect(response).toBeInstanceOf(Array);
             expect(response.length).toBe(1);
         }, timeout);

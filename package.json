@@ -5,30 +5,10 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec babel-node app.js",
-    "build": "babel -d ./build ./lib --copy-files",
-    "test-all": "jest --silent ./tests",
-    "test-all-debug": "jest --verbose --detectOpenHandles ./tests",
-    "test-custodian": "jest --silent ./tests/1.custodian.test.js",
-    "test-custodian-debug": "jest --verbose --detectOpenHandles ./tests/1.custodian.test.js",
-    "test-depository": "jest --silent ./tests/2.depository.test.js",
-    "test-depository-debug": "jest --verbose --detectOpenHandles ./tests/2.depository.test.js",
-    "test-database": "jest --silent ./tests/3.database.test.js",
-    "test-database-debug": "jest --verbose --detectOpenHandles ./tests/3.database.test.js",
-    "test-protector": "jest --silent ./tests/4.protector.test.js",
-    "test-protector-debug": "jest --verbose --detectOpenHandles ./tests/4.protector.test.js",
-    "test-localserver": "jest --silent ./tests/5.localserver.test.js",
-    "test-localserver-debug": "jest --verbose --detectOpenHandles ./tests/5.localserver.test.js",
-    "test-amazons3": "jest --silent ./tests/6.amazons3.test.js",
-    "test-amazons3-debug": "jest --verbose --detectOpenHandles ./tests/6.amazons3.test.js",
-    "test-backblazeb2": "jest --silent ./tests/7.backblazeb2.test.js",
-    "test-backblazeb2-debug": "jest --verbose --detectOpenHandles ./tests/7.backblazeb2.test.js",
-    "test-digitaloceanspaces": "jest --silent ./tests/8.digitaloceanspaces.test.js",
-    "test-digitaloceanspaces-debug": "jest --verbose --detectOpenHandles ./tests/8.digitaloceanspaces.test.js",
-    "test-mega": "jest --silent ./tests/9.mega.test.js",
-    "test-mega-debug": "jest --verbose --detectOpenHandles ./tests/9.mega.test.js"
+    "build": "babel -d ./build ./lib --copy-files"
   },
   "jest": {
-     "testSequencer": "./tests/tests.sequencer.js"
+    "testSequencer": "./tests/tests.sequencer.js"
   },
   "author": "Amir A. Parvez aka Mohd. Amir",
   "license": "ISC",
@@ -41,7 +21,8 @@
     "babel-jest": "^27.0.6",
     "express": "^4.17.1",
     "jest": "^27.0.6",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "yargs": "^17.1.0"
   },
   "dependencies": {
     "aws-sdk": "^2.953.0",

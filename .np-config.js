@@ -1,4 +1,3 @@
 module.exports = {
-    branch: 'main',
-    contents: 'build'
+    branch: 'main'
 }

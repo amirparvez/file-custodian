@@ -79,7 +79,7 @@ describe('backblazeb2', () => {
         }, timeout);
 
         test('backblazeb2.depository.file.search', async () => {
-            const response = await custodian.depository(TestsConfig.b2Depository.name).searchFiles({ folder: "tests", query: "NAME:testfile_rename", forceRequestToS3: true })
+            const response = await custodian.depository(TestsConfig.b2Depository.name).searchFiles({ folder: "tests", query: "NAME:testfile_rename", forceRequestToProvider: true })
             expect(response).toBeInstanceOf(Array);
             expect(response.length).toBe(1);
         }, timeout);

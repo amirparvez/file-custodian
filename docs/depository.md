@@ -278,21 +278,20 @@ This will search files in the depository.
 | :--- |    :---   |  :---:   | :---: | :---: |
 | folder (STRING) | Folder to search the files in, provide * to search all folders | False | * | Depository root |
 | query (STRING) | Search query | False | EXTENSION:XYZ, NAME:XYZ, NAME_CONTAINS:XYZ | null |
-| forceRequestToS3 (BOOLEAN) | When true, make request to S3 instead of searching in the database | False | - | false |
-| forceRequestToMega (BOOLEAN) | When true, make request to MEGA instead of searching in the database | False | - | false |
+| forceRequestToProvider (BOOLEAN) | When true, make request to storage provider instead of searching in the database | False | - | false |
 
 > WARNING: Paths must only have forward slashes and must never start or end with a slash.
 
-> WARNING: Forcing a request to s3 might affect your s3 costs.
+> WARNING: Forcing a request to provider might affect your costs.
 
-> NOTE: forceRequestToS3 and forceRequestToMega are only applicable to S3 and MEGA depositories respectively.
+> NOTE: forceRequestToProvider is only applicable to S3, MEGA, SPACES and B2 depositories.
 
 > NOTE: null query will get all files in the folder.
 
 ```js
 const pngFiles = await custodian.depository("s3-1").searchFiles({
     folder: "*",
-    forceRequestToS3: true,
+    forceRequestToProvider: true,
     query: "EXTENSION:PNG",
 });
 

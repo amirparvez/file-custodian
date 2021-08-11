@@ -79,7 +79,7 @@ describe('amazons3', () => {
         }, timeout);
 
         test('amazons3.depository.file.search', async () => {
-            const response = await custodian.depository(TestsConfig.s3Depository.name).searchFiles({ folder: "tests", query: "NAME:testfile_rename", forceRequestToS3: true })
+            const response = await custodian.depository(TestsConfig.s3Depository.name).searchFiles({ folder: "tests", query: "NAME:testfile_rename", forceRequestToProvider: true })
             expect(response).toBeInstanceOf(Array);
             expect(response.length).toBe(1);
         }, timeout);

@@ -59,7 +59,7 @@ Database is used to **store information** about the depository's files.
 | :--- |    :---   |  :---:   | :---: | :---: |
 | host (STRING) | Database server host | True | - | - |
 | port (STRING) | Database service port  | True | - | - |
-| system (STRING) | Database system/type | True | mysql, mariadb, postgres | - |
+| system (STRING) | Database system/type | True | mysql, mariadb, postgres, mongodb | - |
 | database (STRING) | Database name | True | - | - |
 | userName (STRING) | User name | True | - | - |
 | password (STRING) | User password | True | - | - |

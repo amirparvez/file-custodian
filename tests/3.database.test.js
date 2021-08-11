@@ -1,6 +1,9 @@
 import { Sequelize } from '../node_modules/sequelize';
-import FileCustodian from '../lib';
 import TestsConfig from './tests.config.js';
+
+import FileCustodianLib from '../lib';
+import FileCustodianBuild from '../build';
+const FileCustodian = TestsConfig.sourcePath == "../lib" ? FileCustodianLib : FileCustodianBuild;
 
 const timeout = TestsConfig.testTimeout;
 

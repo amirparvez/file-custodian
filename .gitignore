@@ -5,6 +5,5 @@ client/
 todo.txt
 app.js
 build/
-tests/tests.config.js
 tests/tests_github.config.js
 tests/mytests.config.js

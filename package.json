@@ -2,16 +2,16 @@
   "name": "file-custodian",
   "version": "1.0.0",
   "description": "A javaScript library for managing files at different depositories simultaneously.",
-  "main": "app.js",
+  "main": "./lib/index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node app.js",
-    "build": "babel -d ./build ./lib --copy-files"
+    "build": "babel -d ./build ./lib --copy-files",
+    "test": "echo \"No tests specified\""
   },
   "jest": {
     "testSequencer": "./tests/tests.sequencer.js"
   },
   "author": "Amir A. Parvez aka Mohd. Amir",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.15.0",
@@ -19,9 +19,8 @@
     "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "babel-jest": "^27.0.6",
-    "express": "^4.17.1",
     "jest": "^27.0.6",
-    "nodemon": "^2.0.12",
+    "np": "^7.5.0",
     "yargs": "^17.1.0"
   },
   "dependencies": {

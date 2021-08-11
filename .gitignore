@@ -1,9 +1,9 @@
 node_modules/
 depository/
-client/
 **/docs/*.txt
 todo.txt
 app.js
 build/
-tests/tests_github.config.js
+tests/tests.config.js
+tests/githubtests.config.js
 tests/mytests.config.js

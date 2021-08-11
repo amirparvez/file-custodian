@@ -1,4 +1,5 @@
 export default {
+    sourcePath: "../lib", // To test build, use ../build.
     testTimeout: 60000,
     dbForDepositoryTesting: "sql", // Which database to use when testing depositories. // nosql for mongodb.
     custodian: {

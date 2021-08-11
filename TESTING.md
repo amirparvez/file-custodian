@@ -2,6 +2,21 @@
 
 You can use **tester.js** to test modules. All tests are available in **tests** folder. Make sure to configure the library for testing in **tests.config.js** file also present in the tests folder.
 
+Before running any tests, you must build the library even if you are not testing the build version. You can control which version to test by pointing sourcePath in tests.config.js to it's folder.
+
+```js
+{
+    ...sourcePath: "../lib", // To test build, use ../build.
+}
+```
+
+</br>
+
+Command for building:
+```
+npm run build
+```
+
 </br>
 
 Command for running tests:

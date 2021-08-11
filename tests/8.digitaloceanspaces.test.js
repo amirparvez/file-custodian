@@ -1,7 +1,12 @@
-import FileCustodian from '../lib';
-import FCFile from '../lib/assets/file.js';
-
 import TestsConfig from './tests.config.js';
+
+import FileCustodianLib from '../lib';
+import FileCustodianBuild from '../build';
+const FileCustodian = TestsConfig.sourcePath == "../lib" ? FileCustodianLib : FileCustodianBuild;
+
+import FCFileLib from '../lib/assets/file.js';
+import FCFileBuild from '../build/assets/file.js';
+const FCFile = TestsConfig.sourcePath == "../lib" ? FCFileLib : FCFileBuild;
 
 const timeout = TestsConfig.testTimeout;
 

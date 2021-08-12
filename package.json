@@ -1,6 +1,6 @@
 {
   "name": "file-custodian",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A javaScript library for managing files at different depositories simultaneously.",
   "repository": "amirparvez/file-custodian",
   "files": [
@@ -24,6 +24,7 @@
     "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "babel-jest": "^27.0.6",
+    "dotenv": "^10.0.0",
     "jest": "^27.0.6",
     "np": "^7.5.0",
     "yargs": "^17.1.0"

@@ -1,6 +1,6 @@
 {
   "name": "file-custodian",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A javaScript library for managing files at different depositories simultaneously.",
   "repository": "amirparvez/file-custodian",
   "files": [

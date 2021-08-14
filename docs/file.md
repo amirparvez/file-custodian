@@ -68,6 +68,24 @@ const copiedFile = await file.copyToFolder("copied_images");
 
 <br>
 
+### **Copying a file to a depository**
+
+This will copy the file to another depository and update the database if connected.
+
+> NOTE: It will update of course the database of the depository the file is copied to.
+
+| Parameter | Description | Required | Options | Default |
+| :--- |    :---   |  :---:   | :---: | :---: |
+| depository | Depository to copy file to | True | - | - |
+
+```js
+const depositoryToCopyFileTo = await custodian.depository("b2-1");
+const copiedFile = await file.copyToDepository(depositoryToCopyFileTo);
+```
+>Returns file or null.
+
+<br>
+
 ### **Deleting a file**
 
 This will delete the file and update the database if connected.

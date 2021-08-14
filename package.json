@@ -9,6 +9,7 @@
   ],
   "main": "./build/index.js",
   "scripts": {
+    "run-dev": "nodemon --exec babel-node app.js",
     "build": "babel -d ./build ./lib --copy-files",
     "test": "echo \"No tests specified\""
   },
@@ -25,7 +26,9 @@
     "@babel/preset-env": "^7.15.0",
     "babel-jest": "^27.0.6",
     "dotenv": "^10.0.0",
+    "express": "^4.17.1",
     "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
     "np": "^7.5.0",
     "yargs": "^17.1.0"
   },

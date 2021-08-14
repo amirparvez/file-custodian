@@ -53,6 +53,21 @@ const success = await file.rename("newname");
 
 <br>
 
+### **Copying a file to a folder**
+
+This will copy the file to a folder within its depository and update the database if connected.
+
+| Parameter | Description | Required | Options | Default |
+| :--- |    :---   |  :---:   | :---: | :---: |
+| folderName (STRING) | Name of the folder to copy to| True | - | - |
+
+```js
+const copiedFile = await file.copyToFolder("copied_images");
+```
+>Returns file or null.
+
+<br>
+
 ### **Deleting a file**
 
 This will delete the file and update the database if connected.

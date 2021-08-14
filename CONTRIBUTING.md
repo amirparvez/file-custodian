@@ -1,5 +1,7 @@
 # **Contributing**
 
+> WARNING: Do not use the main branch for contributing, always use the dev branch.
+
 Before submitting a contribution make sure:
 
 1. You have tested both, the unbuilt and built version.
@@ -11,3 +13,11 @@ Code guidelines:
 3. Only camelCasing must be used.
 4. Additional comments must be added when needed for helping the reader.
 5. Names of any (functions, variables etc.) must hint what their role is.
+
+Steps to make a contribution:
+
+1. Fork the dev branch and clone it to your machine.
+2. Add this repository as upstream to your forked branch. [Help](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/configuring-a-remote-for-a-fork)
+3. Create a new branch from the forked branch, make your changes to it, commit them and push it to your remote.
+4. Create a pull request.
+5. [Step-by-step guide to contributing on GitHub](https://www.dataschool.io/how-to-contribute-on-github/)

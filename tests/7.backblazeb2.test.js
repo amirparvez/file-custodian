@@ -47,6 +47,8 @@ describe('backblazeb2', () => {
 
     describe('backblazeb2.depository.file', () => {
         let file = null;
+        let copiedFile = null;
+
         test('backblazeb2.depository.file.new', async () => {
             file = await custodian.depository(TestsConfig.b2Depository.name).newFile({ name: "testfile", ext: "txt", contents: "abcdefghijklmnopqrstuvwxyz", folder: "tests" });
             expect(file).toBeInstanceOf(FCFile);
@@ -94,9 +96,16 @@ describe('backblazeb2', () => {
             expect(response).toBeInstanceOf(Array);
         }, timeout);
 
+        test('backblazeb2.depository.file.copy', async () => {
+            copiedFile = await file.copyToFolder("tests/copies");
+            expect(copiedFile).toBeInstanceOf(FCFile);
+        }, timeout);
+
         test('backblazeb2.depository.file.delete', async () => {
-            const response = await file.delete();
-            expect(response).toBe(true);
+            const response1 = await file.delete();
+            const response2 = await copiedFile.delete();
+            expect(response1).toBe(true);
+            expect(response2).toBe(true);
         }, timeout);
     });
 

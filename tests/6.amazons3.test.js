@@ -47,6 +47,8 @@ describe('amazons3', () => {
 
     describe('amazons3.depository.file', () => {
         let file = null;
+        let copiedFile = null;
+
         test('amazons3.depository.file.new', async () => {
             file = await custodian.depository(TestsConfig.s3Depository.name).newFile({ name: "testfile", ext: "txt", contents: "abcdefghijklmnopqrstuvwxyz", folder: "tests" });
             expect(file).toBeInstanceOf(FCFile);
@@ -94,9 +96,16 @@ describe('amazons3', () => {
             expect(response).toBeInstanceOf(Array);
         }, timeout);
 
+        test('amazons3.depository.file.copy', async () => {
+            copiedFile = await file.copyToFolder("tests/copies");
+            expect(copiedFile).toBeInstanceOf(FCFile);
+        }, timeout);
+
         test('amazons3.depository.file.delete', async () => {
-            const response = await file.delete();
-            expect(response).toBe(true);
+            const response1 = await file.delete();
+            const response2 = await copiedFile.delete();
+            expect(response1).toBe(true);
+            expect(response2).toBe(true);
         }, timeout);
     });
 

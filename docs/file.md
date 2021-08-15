@@ -112,7 +112,7 @@ This will move the file to another depository and update the database if connect
 | depository | Depository to move file to | True | - | - |
 
 ```js
-let depositoryToMoveFileTo = await custodian.depository("m-1");
+const depositoryToMoveFileTo = await custodian.depository("m-1");
 const movedFile = await file.moveToDepository(depositoryToMoveFileTo);
 ```
 >Returns file or null.

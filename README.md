@@ -11,4 +11,4 @@ Install using:
 npm i file-custodian
 ```
 
-Make sure to go through the [Api Documentation](https://github.com/amirparvez/file-custodian/tree/main/docs/README.md), [Testing Documentation](https://github.com/amirparvez/file-custodian/tree/main/TESTING.md) and [Contributing Documentation](https://github.com/amirparvez/file-custodian/tree/main/CONTRIBUTING.md) for better understanding.
+Make sure to go through the [Api Documentation](https://github.com/amirparvez/file-custodian/tree/main/docs/README.md), [Testing Documentation](https://github.com/amirparvez/file-custodian/tree/main/TESTING.md) and [Contributing Documentation](https://github.com/amirparvez/file-custodian/tree/main/CONTRIBUTING.md) to learn more.

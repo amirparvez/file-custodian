@@ -59,7 +59,7 @@ This will copy the file to a folder within its depository and update the databas
 
 | Parameter | Description | Required | Options | Default |
 | :--- |    :---   |  :---:   | :---: | :---: |
-| folderName (STRING) | Name of the folder to copy to| True | - | - |
+| folderPath (STRING) | Path of the folder to copy to| True | - | - |
 
 ```js
 const copiedFile = await file.copyToFolder("copied_images");
@@ -92,10 +92,28 @@ This will move the file to a folder within its depository and update the databas
 
 | Parameter | Description | Required | Options | Default |
 | :--- |    :---   |  :---:   | :---: | :---: |
-| folderName (STRING) | Name of the folder to move to| True | - | - |
+| folderPath (STRING) | Path of the folder to move to| True | - | - |
 
 ```js
 const movedFile = await file.moveToFolder("moved_files");
+```
+>Returns file or null.
+
+<br>
+
+### **Moving a file to a depository**
+
+This will move the file to another depository and update the database if connected.
+
+> NOTE: It will update of course the database of the depository the file is moved to.
+
+| Parameter | Description | Required | Options | Default |
+| :--- |    :---   |  :---:   | :---: | :---: |
+| depository | Depository to move file to | True | - | - |
+
+```js
+let depositoryToMoveFileTo = await custodian.depository("m-1");
+const movedFile = await file.moveToDepository(depositoryToMoveFileTo);
 ```
 >Returns file or null.
 

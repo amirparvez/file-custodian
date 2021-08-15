@@ -86,6 +86,21 @@ const copiedFile = await file.copyToDepository(depositoryToCopyFileTo);
 
 <br>
 
+### **Moving a file to a folder**
+
+This will move the file to a folder within its depository and update the database if connected.
+
+| Parameter | Description | Required | Options | Default |
+| :--- |    :---   |  :---:   | :---: | :---: |
+| folderName (STRING) | Name of the folder to move to| True | - | - |
+
+```js
+const movedFile = await file.moveToFolder("moved_files");
+```
+>Returns file or null.
+
+<br>
+
 ### **Deleting a file**
 
 This will delete the file and update the database if connected.

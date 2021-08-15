@@ -21,3 +21,19 @@ Steps to make a contribution:
 3. Create a new branch from the forked branch, make your changes to it, commit them and push it to your remote.
 4. Create a pull request.
 5. [Step-by-step guide to contributing on GitHub](https://www.dataschool.io/how-to-contribute-on-github/)
+
+Branch naming guidelines:
+
+1. Branch names should start with **feature-** , **documentation-** and **fix-** for adding or making changes to features, documentations and fixes respectively. Only camelCasing must be used and they should not contain any spaces.
+
+    **Examples**: feature-moveToFolder, documentation-api, documentation-testing, documentation-contributing, fix-issueWithNameValidation.
+
+Commit message guidelines:
+
+1. Commit message should be in format of: **'[object] [action]: [specfic objects]'**.
+
+    **Objects**: Functionalities, Tests, Documentation, Contributing Documentation and Testing Documentation.
+
+    **Actions**: Added and Updated.
+
+    **Examples**: 'Contributing Documentation Updated.' , 'Testing Documentation Updated.', 'Functionalities Added: moveToDepository, deleteFile and moveFile.' , 'Tests Updated: file.new, file.delete and file.copy.' , 'Documentation Added & Updated: newFile.'

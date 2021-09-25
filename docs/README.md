@@ -110,8 +110,17 @@ await custodian.depository(depositoryName).init(); // Important
 
 <br>
 
+### **Environment Variables**
+
+```
+FILECUSTODIAN_DEBUG=true
+FILECUSTODIAN_PROTECTOR_KEY=YOUR_32_BYTE_KEY_IN_HEX_FORM_FOR_EN/DE-CRYPTION
+```
+
+<br>
+
 Learn more from **Object Specific Documentations:**
 
-- [Depository Documentation](https://github.com/amirparvez/file-custodian/tree/main/docs/depository.md)
-- [Database Documentation](https://github.com/amirparvez/file-custodian/tree/main/docs/database.md)
-- [File Documentation](https://github.com/amirparvez/file-custodian/tree/main/docs/file.md)
+- [Depository Documentation](https://github.com/muhammadamir-github/file-custodian/tree/main/docs/depository.md)
+- [Database Documentation](https://github.com/muhammadamir-github/file-custodian/tree/main/docs/database.md)
+- [File Documentation](https://github.com/muhammadamir-github/file-custodian/tree/main/docs/file.md)

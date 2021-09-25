@@ -108,7 +108,7 @@ await custodian.depository("s3-1").database().createTable();
 ```
 >Returns **true** or **false**.
 
-Learn more from [Database Documentation](https://github.com/amirparvez/file-custodian/tree/main/docs/database.md)
+Learn more from [Database Documentation](https://github.com/muhammadamir-github/file-custodian/tree/main/docs/database.md)
 
 <br>
 
@@ -133,13 +133,10 @@ Protector is used to **encrypt** and **decrypt** depository's files.
 | :--- |    :---   |  :---:   | :---: | :---: |
 | algorithm (STRING) | Encryption algorithm | False | aes-256-ctr | aes-256-ctr |
 
-> NOTE: You have to add your own 32 byte key in hex form, to the config.json file. If you leave it null or empty then protector will generate one itself. Make sure to keep that safe.
+> NOTE: You have to add your own 32 byte key in hex form, to your .env file. Make sure to keep that safe.
 
-```js
-{
-    "debug": true,
-    "file_protector_key": "YOURKEY" // null or ""
-}
+```
+FILECUSTODIAN_PROTECTOR_KEY=YOUR_32_BYTE_KEY_IN_HEX_FORM_FOR_EN/DE-CRYPTION
 ```
 
 > NOTE: Protector uses a unique initialization vector for each file, which is stored in the file itself.
@@ -310,6 +307,6 @@ const allDepositoryFiles = await custodian.depository("s3-1").searchFiles({ fold
 ```
 >Returns [files] or [ ].
 
-Learn more from [File Documentation](https://github.com/amirparvez/file-custodian/tree/main/docs/file.md)
+Learn more from [File Documentation](https://github.com/muhammadamir-github/file-custodian/tree/main/docs/file.md)
 
 <br>

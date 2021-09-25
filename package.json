@@ -2,7 +2,7 @@
   "name": "file-custodian",
   "version": "1.1.0",
   "description": "A javaScript library for managing files at different depositories simultaneously.",
-  "repository": "amirparvez/file-custodian",
+  "repository": "muhammadamir-github/file-custodian",
   "files": [
     "build",
     "docs"
@@ -10,41 +10,43 @@
   "main": "./build/index.js",
   "scripts": {
     "run-dev": "nodemon --exec babel-node app.js",
-    "build": "babel -d ./build ./lib --copy-files",
+    "build": "babel -d ./build ./lib",
     "test": "echo \"No tests specified\""
   },
   "jest": {
     "testSequencer": "./tests/tests.sequencer.js"
   },
-  "author": "Amir A. Parvez",
+  "author": "Muhammad Amir",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.15.0",
-    "@babel/node": "^7.14.9",
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
     "@babel/plugin-transform-runtime": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "babel-jest": "^27.0.6",
-    "dotenv": "^10.0.0",
+    "@babel/preset-env": "^7.15.6",
+    "babel-jest": "^27.2.1",
     "express": "^4.17.1",
-    "jest": "^27.0.6",
-    "nodemon": "^2.0.12",
+    "jest": "^27.2.1",
+    "nodemon": "^2.0.13",
     "np": "^7.5.0",
-    "yargs": "^17.1.0"
+    "yargs": "^17.2.0"
   },
   "dependencies": {
-    "aws-sdk": "^2.953.0",
+    "aws-sdk": "^2.995.0",
+    "core-js": "^3.18.0",
     "crypto": "^1.0.1",
-    "joi": "^17.4.1",
+    "dotenv": "^10.0.0",
+    "joi": "^17.4.2",
     "mariadb": "^2.5.4",
     "megajs": "^0.17.2",
-    "mime-types": "^2.1.31",
+    "mime-types": "^2.1.32",
     "moment": "^2.29.1",
-    "mongoose": "^5.13.5",
+    "mongoose": "^5.13.9",
     "multiparty": "^4.2.2",
-    "mysql2": "^2.2.5",
-    "pg": "^8.6.0",
+    "mysql2": "^2.3.0",
+    "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
+    "regenerator-runtime": "^0.13.9",
     "sequelize": "^6.6.5"
   }
 }

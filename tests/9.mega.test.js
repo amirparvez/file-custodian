@@ -54,9 +54,21 @@ describe('mega', () => {
             expect(file).toBeInstanceOf(FCFile);
         }, timeout);
 
-        test('mega.depository.file.get', async () => {
-            file = await custodian.depository(TestsConfig.megaDepository.name).getFile({ name: "testfile", ext: "txt", folder: "tests" });
-            expect(file).toBeInstanceOf(FCFile);
+        describe('mega.depository.file.get', () => {
+            test('mega.depository.file.getByMeta', async () => {
+                file = await custodian.depository(TestsConfig.megaDepository.name).getFile({ name: "testfile", ext: "txt", folder: "tests" });
+                expect(file).toBeInstanceOf(FCFile);
+            }, timeout);
+
+            test('mega.depository.file.getByPath', async () => {
+                file = await custodian.depository(TestsConfig.megaDepository.name).getFile({ path: "tests/testfile.txt" });
+                expect(file).toBeInstanceOf(FCFile);
+            }, timeout);
+
+            test('mega.depository.file.getById', async () => {
+                if(file){ file = await custodian.depository(TestsConfig.megaDepository.name).getFile({ id: file.config.id }); }
+                expect(file).toBeInstanceOf(FCFile);
+            }, timeout);
         }, timeout);
 
         test('mega.depository.file.record', async () => {

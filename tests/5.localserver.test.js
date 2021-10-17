@@ -54,9 +54,21 @@ describe('localserver', () => {
             expect(file).toBeInstanceOf(FCFile);
         }, timeout);
 
-        test('localserver.depository.file.get', async () => {
-            file = await custodian.depository(TestsConfig.localDepository.name).getFile({ name: "testfile", ext: "txt", folder: "tests" });
-            expect(file).toBeInstanceOf(FCFile);
+        describe('localserver.depository.file.get', () => {
+            test('localserver.depository.file.getByMeta', async () => {
+                file = await custodian.depository(TestsConfig.localDepository.name).getFile({ name: "testfile", ext: "txt", folder: "tests" });
+                expect(file).toBeInstanceOf(FCFile);
+            }, timeout);
+
+            test('localserver.depository.file.getByPath', async () => {
+                file = await custodian.depository(TestsConfig.localDepository.name).getFile({ path: "tests/testfile.txt" });
+                expect(file).toBeInstanceOf(FCFile);
+            }, timeout);
+
+            test('localserver.depository.file.getById', async () => {
+                if(file){ file = await custodian.depository(TestsConfig.localDepository.name).getFile({ id: file.config.id }); }
+                expect(file).toBeInstanceOf(FCFile);
+            }, timeout);
         }, timeout);
 
         test('localserver.depository.file.record', async () => {

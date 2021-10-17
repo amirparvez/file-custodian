@@ -54,9 +54,21 @@ describe('digitaloceanspaces', () => {
             expect(file).toBeInstanceOf(FCFile);
         }, timeout);
 
-        test('digitaloceanspaces.depository.file.get', async () => {
-            file = await custodian.depository(TestsConfig.spacesDepository.name).getFile({ name: "testfile", ext: "txt", folder: "tests" });
-            expect(file).toBeInstanceOf(FCFile);
+        describe('digitaloceanspaces.depository.file.get', () => {
+            test('digitaloceanspaces.depository.file.getByMeta', async () => {
+                file = await custodian.depository(TestsConfig.spacesDepository.name).getFile({ name: "testfile", ext: "txt", folder: "tests" });
+                expect(file).toBeInstanceOf(FCFile);
+            }, timeout);
+
+            test('digitaloceanspaces.depository.file.getByPath', async () => {
+                file = await custodian.depository(TestsConfig.spacesDepository.name).getFile({ path: "tests/testfile.txt" });
+                expect(file).toBeInstanceOf(FCFile);
+            }, timeout);
+
+            test('digitaloceanspaces.depository.file.getById', async () => {
+                if(file){ file = await custodian.depository(TestsConfig.spacesDepository.name).getFile({ id: file.config.id }); }
+                expect(file).toBeInstanceOf(FCFile);
+            }, timeout);
         }, timeout);
 
         test('digitaloceanspaces.depository.file.record', async () => {

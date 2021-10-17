@@ -54,9 +54,21 @@ describe('amazons3', () => {
             expect(file).toBeInstanceOf(FCFile);
         }, timeout);
 
-        test('amazons3.depository.file.get', async () => {
-            file = await custodian.depository(TestsConfig.s3Depository.name).getFile({ name: "testfile", ext: "txt", folder: "tests" });
-            expect(file).toBeInstanceOf(FCFile);
+        describe('amazons3.depository.file.get', () => {
+            test('amazons3.depository.file.getByMeta', async () => {
+                file = await custodian.depository(TestsConfig.s3Depository.name).getFile({ name: "testfile", ext: "txt", folder: "tests" });
+                expect(file).toBeInstanceOf(FCFile);
+            }, timeout);
+
+            test('amazons3.depository.file.getByPath', async () => {
+                file = await custodian.depository(TestsConfig.s3Depository.name).getFile({ path: "tests/testfile.txt" });
+                expect(file).toBeInstanceOf(FCFile);
+            }, timeout);
+
+            test('amazons3.depository.file.getById', async () => {
+                if(file){ file = await custodian.depository(TestsConfig.s3Depository.name).getFile({ id: file.config.id }); }
+                expect(file).toBeInstanceOf(FCFile);
+            }, timeout);
         }, timeout);
 
         test('amazons3.depository.file.record', async () => {

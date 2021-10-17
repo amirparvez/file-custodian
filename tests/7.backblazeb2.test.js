@@ -54,9 +54,21 @@ describe('backblazeb2', () => {
             expect(file).toBeInstanceOf(FCFile);
         }, timeout);
 
-        test('backblazeb2.depository.file.get', async () => {
-            file = await custodian.depository(TestsConfig.b2Depository.name).getFile({ name: "testfile", ext: "txt", folder: "tests" });
-            expect(file).toBeInstanceOf(FCFile);
+        describe('backblazeb2.depository.file.get', () => {
+            test('backblazeb2.depository.file.getByMeta', async () => {
+                file = await custodian.depository(TestsConfig.b2Depository.name).getFile({ name: "testfile", ext: "txt", folder: "tests" });
+                expect(file).toBeInstanceOf(FCFile);
+            }, timeout);
+
+            test('backblazeb2.depository.file.getByPath', async () => {
+                file = await custodian.depository(TestsConfig.b2Depository.name).getFile({ path: "tests/testfile.txt" });
+                expect(file).toBeInstanceOf(FCFile);
+            }, timeout);
+
+            test('backblazeb2.depository.file.getById', async () => {
+                if(file){ file = await custodian.depository(TestsConfig.b2Depository.name).getFile({ id: file.config.id }); }
+                expect(file).toBeInstanceOf(FCFile);
+            }, timeout);
         }, timeout);
 
         test('backblazeb2.depository.file.record', async () => {

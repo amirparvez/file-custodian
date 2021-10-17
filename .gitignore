@@ -8,3 +8,4 @@ tests/tests.config.js
 tests/githubtests.config.js
 tests/mytests.config.js
 client/
+.env

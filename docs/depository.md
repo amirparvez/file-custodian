@@ -248,10 +248,11 @@ This will get a file from the depository.
 | ext (STRING) | Extension for the file, without dot | True | - | - |
 | folder (STRING) | Folder to get the file from | False | - | Depository root |
 | path (STRING) | Path of the file | False | - | - |
+| id (STRING/INTEGER) | Id of the file in database | False | - | - |
 
 > WARNING: Paths must only have forward slashes and must never start or end with a slash.
 
-> NOTE: name, ext, and folder is not required when providing the path.
+> NOTE: name, ext, and folder is not required when providing the path or the id.
 
 ```js
 const file = await custodian.depository("s3-1").getFile({
@@ -262,6 +263,9 @@ const file = await custodian.depository("s3-1").getFile({
 
 // With path
 const file = await custodian.depository("s3-1").getFile({ path: "testing/file.txt" });
+
+// With id
+const file = await custodian.depository("s3-1").getFile({ id: 19281 });
 ```
 >Returns file or null.
 
